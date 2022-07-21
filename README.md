@@ -4,8 +4,7 @@
 ```
 USERNAME: dbshack
 PASSWORD: 8!2MatsWeT14NtL%wiPb
+ENDPOINT: dbshack.comzufct38hz.ap-southeast-1.rds.amazonaws.com
+PORT: 3306
 ```
 
-
-## Instructions
-1. **Make sure you have downloaded your npm and node.js(v16.13.1)**
