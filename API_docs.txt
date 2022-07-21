@@ -1,17 +1,6 @@
 ==================================================================
 							For < >
 ==================================================================
-URL: http://localhost:5000/api/test
-Description: Testing api
-Request Payload:
-{
-    "text": "Testing  1 2 3 ",
-}
-Respond Payload:
-{
-    "message": "ok",
-}
-
 URL: 
 Description:
 Request Payload:
@@ -38,3 +27,28 @@ URL:
 Description:
 Request Payload:
 Respond Payload:
+
+
+
+
+
+
+
+
+
+### Sample ###
+URL: http://localhost:5000/api/test
+Description: Testing api
+Request Payload:
+{
+    "text": "Testing  1 2 3 ",
+}
+Respond Payload (Valid):
+{
+    "message": "ok",
+}
+
+Respond Payload (Error):
+{
+    "message": "Error!",
+}
