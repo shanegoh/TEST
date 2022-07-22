@@ -1,27 +1,38 @@
-const { findUserByUsername, findAllWalletById, findAllCurrencyFromWalletId } = require('./repo/repo.js')
+const { findUserByUsername, findAllWalletById } = require("./repo/repo.js");
 
 const getUserByUsername = (username) => {
     return findUserByUsername(username)
-        .then(user => {
+        .then((user) => {
             if (!user) {
-                console.log('No user ' + user + ' exist.');
+                console.log("No user " + user + " exist.");
             } else {
-                return user
+                return user;
             }
         })
         .catch(function (err) {
-            return err
+            return err;
         });
 };
 
 const getAllWalletById = (id) => {
     return findAllWalletById(id)
         .then((wallets) => {
-            console.log(wallets)
-            return wallets
+            console.log(wallets);
+            return wallets;
         })
         .catch(function (err) {
-            return err
+            return err;
+        });
+};
+
+const getExchangeRateByCountry = (currency) => {
+    return findExchangeRateByCountry(currency)
+        .then((ExchangeRate) => {
+            console.log(ExchangeRate);
+            return ExchangeRate;
+        })
+        .catch(function (err) {
+            return err;
         });
 };
 
@@ -39,5 +50,6 @@ const getAllCurrencyFromWalletId = (id) => {
 module.exports = {
     getUserByUsername,
     getAllWalletById,
+    getExchangeRateByCountry,
     getAllCurrencyFromWalletId
-}
+};

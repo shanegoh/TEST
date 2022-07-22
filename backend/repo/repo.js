@@ -1,15 +1,20 @@
-const db = require('../models/index.js')
+const db = require("../models/index.js");
 
-const User = db.user
-const Wallet = db.wallet
-const Currency = db.currency
+const User = db.user;
+const Wallet = db.wallet;
 
 const findUserByUsername = (username) => {
-    return User.findOne({ where: { username: username } })
+    return User.findOne({ where: { username: username } });
 };
 
 const findAllWalletById = (id) => {
-    return Wallet.findAll({ where: { user_id: id } })
+    return Wallet.findAll({ where: { user_id: id } });
+};
+
+const findExchangeRateByCountry = (exchangeCurrency) => {
+    return ExchangeRate.findAll({
+        where: { exchange_currency: exchangeCurrency },
+    });
 };
 
 const findAllCurrencyFromWalletId = (id) => {
@@ -19,5 +24,6 @@ const findAllCurrencyFromWalletId = (id) => {
 module.exports = {
     findUserByUsername,
     findAllWalletById,
+    findExchangeRateByCountry,
     findAllCurrencyFromWalletId
-}
+};
