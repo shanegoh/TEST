@@ -1,11 +1,21 @@
 ==================================================================
 							For < >
 ==================================================================
-URL: 
-Description:
-Request Payload:
+URL: http://localhost:5000/api/login
+Description: Login
+Request Payload (Form Data): 
+{
+	'username': 'user102',
+	"password': 'user102'
+}
 Respond Payload (Valid):
+{
+    "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXIxMDIiLCJpYXQiOjE2NTg0NjQzOTk2MjUsImV4cCI6MTY1ODQ2NjE5OTYyNX0.a1IQF3ZYF7j1usaUCOy_WjpCc1IPeegANWocJlNzhlA"
+}
 Respond Payload (Error):
+{
+    "message": "Invalid Username or Password"
+}
 
 URL: 
 Description:
