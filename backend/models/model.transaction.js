@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-    const Currency = sequelize.define('currency', {
+    const Transaction = sequelize.define('transaction', {
         id: {
             type: Sequelize.INTEGER,
             autoIncrement: true,
@@ -44,7 +44,7 @@ module.exports = (sequelize, Sequelize) => {
         },
     });
 
-    return Currency
+    return Transaction
 }
 
 // https://sequelize.org/docs/v6/core-concepts/validations-and-constraints/

@@ -24,8 +24,7 @@ db.op = Op
 db.user = require("./model.user.js")(sequelize, Sequelize)
 db.wallet = require("./model.wallet.js")(sequelize, Sequelize)
 // db.transaction = require("./model.transaction.js")(sequelize, Sequelize)
-// db.multicurrency = require("./model.multicurrency.js")(sequelize, Sequelize)
-// db.exchangeRate = require("./model.exchangeRate.js")(sequelize, Sequelize)
+db.exchangeRate = require("./model.exchangeRate.js")(sequelize, Sequelize)
 db.currency = require("./model.currency.js")(sequelize, Sequelize)
 // https://sequelize.org/docs/v6/core-concepts/model-basics/
 

@@ -1,4 +1,4 @@
-const { findUserByUsername, findAllWalletById } = require("./repo/repo.js");
+const { findUserByUsername, findAllWalletById, findAllCurrencyFromWalletId, findExchangeRateByCountry, deleteAccount, findCurrencyFromWalletId } = require("./repo/repo.js");
 
 const getUserByUsername = (username) => {
     return findUserByUsername(username)
@@ -13,6 +13,17 @@ const getUserByUsername = (username) => {
             return err;
         });
 };
+
+const getCurrencyFromWalletId = (id) => {
+    return findCurrencyFromWalletId(id)
+        .then((currencyList) => {
+            console.log(currencyList)
+            return currencyList
+        })
+        .catch((err) => {
+            return err
+        })
+}
 
 const getAllWalletById = (id) => {
     return findAllWalletById(id)
@@ -47,9 +58,24 @@ const getAllCurrencyFromWalletId = (id) => {
         });
 };
 
+const closeAccount = (id) => {
+    return deleteAccount(id).then((isDeleted) => {
+        if (isDeleted === true) {
+            return true
+        } else {
+            return false
+        }
+    })
+        .catch((err) => {
+            return err
+        })
+};
+
 module.exports = {
     getUserByUsername,
     getAllWalletById,
     getExchangeRateByCountry,
-    getAllCurrencyFromWalletId
+    getAllCurrencyFromWalletId,
+    closeAccount,
+    getCurrencyFromWalletId
 };

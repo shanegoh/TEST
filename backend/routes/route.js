@@ -3,14 +3,7 @@ var public_router = express.Router();
 const multer = require("multer");
 const formData = multer();
 const { authenticate, authenticateToken } = require("../auth.js");
-const { getAllWalletById } = require("../services.js");
-const { getExchangeRateByCountry } = require("../services.js");
-
-// Public Access
-public_router.post("/test", formData.fields([]), function (req, res) {
-    console.log(req.body.text);
-    return res.send({ message: "success" });
-});
+const { getExchangeRateByCountry, getAllWalletById, closeAccount, getCurrencyFromWalletId } = require("../services.js");
 
 // Customer Access
 public_router.post("/login", formData.fields([]), function (req, res) {
@@ -28,6 +21,25 @@ public_router.post("/login", formData.fields([]), function (req, res) {
             res.status(401).send({ message: err });
         });
 });
+
+public_router.get(
+    "/findCurrencyFromWalletId/:id",
+    authenticateToken,
+    formData.fields([]),
+    function (req, res) {
+        getCurrencyFromWalletId(req.params.id)
+            .then((currencyList) => {
+                if (currencyList) {
+                    return res.send({ 'currencyList': currencyList });
+                } else {
+                    return res.status(400).send({ message: "No currencies" });
+                }
+            })
+            .catch((err) => {
+                return res.status(400).send({ message: err });
+            });
+    }
+);
 
 public_router.get(
     "/findAllWalletById",
@@ -69,18 +81,19 @@ public_router.get(
     }
 );
 
-public_router.get('/closeAccount', authenticateToken, formData.fields([]), function (req, res) {
+public_router.post('/closeAccount', authenticateToken, formData.fields([]), function (req, res) {
     console.log(req.id)
-    getAllCurrencyFromWalletId(req.params.id).then((currencyList) => {
-        if (currencyList) {
-            return res.send({ 'currencyList': currencyList })
+    closeAccount(req.id).then((isDeleted) => {
+        if (isDeleted === true) {
+            return res.status(200).send({ message: '[Account Closed]: Account details removed.' });
         } else {
-            return res.status(400).send({ 'message': 'No currency' })
+            return res.status(400).send({ message: 'Unable to delete. Please contact administrator.' });
         }
     })
         .catch((err) => {
-            return res.status(400).send({ 'message': err })
+            return res.status(400).send({ message: err });
         })
+
 });
 
 module.exports = public_router;
