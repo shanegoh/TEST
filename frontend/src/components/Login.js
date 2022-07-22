@@ -7,19 +7,20 @@ const Login = (props) => {
     const [loginError, setLoginError] = useState(false);
     const submit = (e) => {
         e.preventDefault();
-        if (user === 'admin') {
-            props.setIsAuthenticated(true);
-        }
-        //set aws database
-        axios.post('http://localhost:3000/api-token-auth/', {
-            username: user,
-            password: pass,
-        }).then( (res)=> {
+        var bodyFormData = new FormData();
+        bodyFormData.append('username', e.target[0].value);
+        bodyFormData.append('password', e.target[1].value);
+        axios({
+            method: "post",
+            url: "http://localhost:5000/api/login",
+            data: bodyFormData,
+            headers: { "Content-Type": "multipart/form-data" },
+        })
+        .then( (res)=> {
             props.setIsAuthenticated(true);
         }).catch((error)=> {
             setLoginError(true);
         });
-
     }
     return (
         <div className="container">
