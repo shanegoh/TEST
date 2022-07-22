@@ -12,7 +12,7 @@ const Login = (props) => {
         }
         axios.post('http://localhost:8000/api-token-auth/', {
             username: user,
-            password: pass
+            password: pass,
         }).then( (res)=> {
             props.setIsAuthenticated(true);
         }).catch((error)=> {
@@ -47,7 +47,7 @@ const Login = (props) => {
                 />
             </div>
             {loginError && <div id = "errorMessage" className = "generic-error">
-                <p> The credentials you have entered is not valid.</p>
+                <p> The credentials you have entered are not valid.</p>
             </div>}
             <button type="submit">SUBMIT</button>
         </form>

@@ -7,7 +7,7 @@ function App() {
 
   return (
     <>
-      {isAuthenticated ? (<Dashboard setIsAuthenticated={setIsAuthenticated}/>):(<Login setIsAuthenticated={setIsAuthenticated}/>) }
+      {(<Login setIsAuthenticated={setIsAuthenticated}/>)}
     </>
   );
 }
