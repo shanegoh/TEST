@@ -1,7 +1,7 @@
 ==================================================================
 							For < >
 ==================================================================
-URL: http://localhost:5000/api/login
+URL: http://localhost:5000/api/login (POST)
 Description: Login
 Request Payload (Form Data): 
 {
@@ -17,11 +17,57 @@ Respond Payload (Error):
     "message": "Invalid Username or Password"
 }
 
-URL: 
-Description:
-Request Payload:
+URL: http://localhost:5000/api/findAllWalletById (GET)
+Description: Finding wallet(s) based on user id
+Request Payload: -
 Respond Payload (Valid):
-Respond Payload (Error):
+{
+    "walletList": [
+        {
+            "id": 3,
+            "user_id": 2,
+            "name": "Trading Account"
+        }
+    ]
+}
+OR
+{
+    "walletList": []
+}
+Respond Payload (None):
+{
+	'message': 'Some error mesage'
+}
+
+
+URL: http://localhost:5000/api/findCurrencyFromWalletId/1 (GET)
+Description: Finding all currency based on wallet id
+Request Payload: -
+Respond Payload (Valid):
+{
+    "currencyList": [
+        {
+            "id": 1,
+            "wallet_id": 1,
+            "currency": "SGD",
+            "amount": 4294.5
+        },
+        {
+            "id": 2,
+            "wallet_id": 1,
+            "currency": "CAD",
+            "amount": 5687.65
+        }
+    ]
+}
+OR
+{
+    "currencyList": []
+}
+Respond Payload (None):
+{
+	'message': 'Some error mesage'
+}
 ==================================================================
 							For < >
 ==================================================================
