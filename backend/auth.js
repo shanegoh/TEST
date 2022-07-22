@@ -3,14 +3,11 @@ const bcrypt = require("bcrypt");
 const { generateAccessToken } = require('./jwtUtil');
 const { getUserByUsername } = require('./services.js')
 
-const hashPwd = (password) => {
-    return bcrypt.hash(password, 10)
-}
-
 // Password authentication
 const authenticate = (user_payload) => {
     return getUserByUsername(user_payload.username)
         .then((user) => {
+            console.log(user.password)
             if (!user) {
                 console.log("Invalid user.")
             } else {
@@ -37,7 +34,7 @@ const authenticateToken = (req, res, next) => {
         if (err)
             return res.sendStatus(403)
 
-        req.username = claims['username']
+        req.id = claims['id']
         next()
     })
 }
@@ -62,6 +59,5 @@ module.exports = {
     authenticateToken,
     authenticate,
     verify_manager_role,
-    verify_staff_role,
-    hashPwd
+    verify_staff_role
 }

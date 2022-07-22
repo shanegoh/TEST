@@ -10,8 +10,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors())
 dotenv.config();
 
-// const db = require("./models/index.js");
-// db.sequelize.sync()
+const db = require("./models/index.js");
+db.sequelize.sync()
 
 // Controller Routes
 app.use('/api', require('./routes/route.js'));

@@ -1,4 +1,4 @@
-const { findUserByUsername } = require('./repo/repo.js')
+const { findUserByUsername, findAllWalletById } = require('./repo/repo.js')
 
 const getUserByUsername = (username) => {
     return findUserByUsername(username)
@@ -14,6 +14,18 @@ const getUserByUsername = (username) => {
         });
 };
 
+const getAllWalletById = (id) => {
+    return findAllWalletById(id)
+        .then((wallets) => {
+            console.log(wallets)
+            return wallets
+        })
+        .catch(function (err) {
+            return err
+        });
+};
+
 module.exports = {
-    getUserByUsername
+    getUserByUsername,
+    getAllWalletById
 }
