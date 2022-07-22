@@ -28,7 +28,7 @@ public_router.post('/login', formData.fields([]), function (req, res) {
         })
 });
 
-public_router.get('/findAllWalletByUsername', authenticateToken, formData.fields([]), function (req, res) {
+public_router.get('/findAllWalletById', authenticateToken, formData.fields([]), function (req, res) {
     console.log(req.id)
     getAllWalletById(req.id).then((walletList) => {
         if (walletList) {
