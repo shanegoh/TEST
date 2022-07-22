@@ -1,4 +1,4 @@
-const { findUserByUsername } = require('./repo/user.js')
+const { findUserByUsername } = require('./repo/repo.js')
 
 const getUserByUsername = (username) => {
     return findUserByUsername(username)

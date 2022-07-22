@@ -2,7 +2,7 @@ module.exports = {
   HOST: "dbshack.comzufct38hz.ap-southeast-1.rds.amazonaws.com",
   USER: "admin",
   PASSWORD: "8!2MatsWeT14NtL%wiPb",
-  DB: "production",
+  DB: "multicurrency",
   dialect: "mysql",
   pool: {
     max: 5,

@@ -18,6 +18,15 @@ module.exports = (sequelize, Sequelize) => {
         debit_amount: {
             type: Sequelize.FLOAT
         },
+        credit_id: {
+            type: Sequelize.INTEGER
+        },
+        credit_currency: {
+            type: Sequelize.STRING(3)
+        },
+        credit_amount: {
+            type: Sequelize.FLOAT
+        },
         description: {
             type: Sequelize.STRING
         },
