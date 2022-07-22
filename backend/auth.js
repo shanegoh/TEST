@@ -1,21 +1,21 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require("bcrypt");
 const { generateAccessToken } = require('./jwtUtil');
-const { getEmployeeByUsername } = require('./services.js')
+const { getUserByUsername } = require('./services.js')
 
 const hashPwd = (password) => {
     return bcrypt.hash(password, 10)
 }
 
 // Password authentication
-const authenticate = (employee_payload) => {
-    return getEmployeeByUsername(employee_payload.username)
-        .then((employee) => {
-            if (!employee) {
-                console.log("Invalid username.")
+const authenticate = (user_payload) => {
+    return getUserByUsername(user_payload.username)
+        .then((user) => {
+            if (!user) {
+                console.log("Invalid user.")
             } else {
-                if (bcrypt.compareSync(employee_payload.password, employee.password)) {
-                    return generateAccessToken(employee)
+                if (bcrypt.compareSync(user_payload.password, user.password)) {
+                    return generateAccessToken(user)
                 } else {
                     console.log("Invalid password.")
                 }
@@ -38,7 +38,6 @@ const authenticateToken = (req, res, next) => {
             return res.sendStatus(403)
 
         req.username = claims['username']
-        req.role = claims['role']
         next()
     })
 }
