@@ -3,7 +3,7 @@ var public_router = express.Router();
 const multer = require('multer');
 const formData = multer();
 const { authenticate, authenticateToken } = require('../auth.js')
-const { getAllWalletById } = require('../services.js')
+const { getAllWalletById, getAllCurrencyFromWalletId } = require('../services.js')
 
 // Public Access
 public_router.post('/test', formData.fields([]), function (req, res) {
@@ -41,5 +41,20 @@ public_router.get('/findAllWalletById', authenticateToken, formData.fields([]), 
             return res.status(400).send({ 'message': err })
         })
 });
+
+public_router.get('/findCurrencyFromWalletId/:id', authenticateToken, formData.fields([]), function (req, res) {
+    console.log(req.params.id)
+    getAllCurrencyFromWalletId(req.params.id).then((currencyList) => {
+        if (currencyList) {
+            return res.send({ 'currencyList': currencyList })
+        } else {
+            return res.status(400).send({ 'message': 'No currency' })
+        }
+    })
+        .catch((err) => {
+            return res.status(400).send({ 'message': err })
+        })
+});
+
 
 module.exports = public_router;
